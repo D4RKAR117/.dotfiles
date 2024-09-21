@@ -1,0 +1,14 @@
+[credential]
+	helper = manager
+[user]
+	email = D4RKAR117@outlook.es
+	name = D4RKAR117
+	signingkey = 3466ECF2C1E4239D
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = true
+[commit]
+	gpgsign = true
+[gpg]
+	program = C:\\Users\\D4RKAR\\scoop\\apps\\gpg4win\\current\\GnuPG\\bin\\gpg.exe
