@@ -135,3 +135,4 @@ esac
 #
 
 export NODE_PATH=$(npm root --quiet -g)
+export GPG_TTY=$(tty)
