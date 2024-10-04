@@ -25,6 +25,10 @@ if version_gt "$latest_version" "$current_version"; then
     # Extract the downloaded archive
     tar xzf /tmp/nvim-linux64.tar.gz -C /tmp
 
+
+    # Remove the old Neovim directory
+    sudo rm -rf /usr/local/nvim
+
     # Move the extracted files to the appropriate directory
     sudo mv /tmp/nvim-linux64 /usr/local/nvim
 
