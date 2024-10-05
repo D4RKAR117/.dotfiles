@@ -86,6 +86,7 @@ plugins=(
   npm 
   node 
   rust
+  spaceship-gradle
 )
 
 source $ZSH/oh-my-zsh.sh
