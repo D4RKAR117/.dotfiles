@@ -25,7 +25,7 @@ ZSH_THEME="spaceship"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -38,7 +38,7 @@ ZSH_THEME="spaceship"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -66,6 +66,9 @@ ZSH_THEME="spaceship"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 export ZOXIDE_CMD_OVERRIDE="cd"
 
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTONAME_SESSION=true
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -86,6 +89,7 @@ plugins=(
   npm 
   node 
   rust
+  tmux
   spaceship-gradle
 )
 
@@ -122,6 +126,7 @@ source $ZSH/oh-my-zsh.sh
 #
 
 export SUDO_EDITOR="nvim"
+export EDITOR="nvim"
 export BROWSER="wslview"
 export DISPLAY=:0
 eval "$(gh copilot alias -- zsh)"
@@ -137,3 +142,6 @@ esac
 
 export NODE_PATH=$(npm root --quiet -g)
 export GPG_TTY=$(tty)
+
+alias bat="batcat"
+
