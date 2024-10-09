@@ -91,15 +91,21 @@ function New-Symlink {
     # Check if the symlink already exists and points to the same target
     if (Test-Path -Path $Destination -PathType Leaf) {
         $ExistingLink = Get-Item -Path $Destination
+
         if ($ExistingLink.LinkType -eq 'SymbolicLink' -and (Get-Item -Path $ExistingLink.Target).FullName -eq (Get-Item -Path $Origin).FullName) {
-            Write-Host "Symlink already exists with the same target. Skipping creation." -ForegroundColor Yellow
+            Write-Host "Symlink already exists with the same target. Removing it in favor of hard link" -ForegroundColor Yellow
+            Remove-Item -Path $Destination
+        }
+
+        if ($ExistingLink.LinkType -eq 'HardLink' -and (Get-Item -Path $ExistingLink.Target).FullName -eq (Get-Item -Path $Origin).FullName) {
+            Write-Host "HardLink already exists with the same target. Skipping creation." -ForegroundColor Yellow
             return
         }
     }
 
-    Write-Host "Creating symlink from '$Origin' to '$Destination'" -ForegroundColor Cyan
-    New-Item -ItemType SymbolicLink -Path $Destination -Value $Origin
-    Write-Host "Symlink created: New-Item -ItemType SymbolicLink -Path $Destination -Value $Origin" -ForegroundColor Green
+    Write-Host "Creating HardLink from '$Origin' to '$Destination'" -ForegroundColor Cyan
+    New-Item -ItemType HardLink -Path $Destination -Value $Origin
+    Write-Host "HardLink created: New-Item -ItemType HardLink -Path $Destination -Value $Origin" -ForegroundColor Green
 }
 
 try {

@@ -1,0 +1,32 @@
+[metadata]
+name = "OneDark"
+aliases = ["One Dark"]
+
+[colors]
+ansi = [
+    "#1E2127",
+    "#E06C75",
+    "#98C379",
+    "#D19A66",
+    "#61AFEF",
+    "#C678DD",
+    "#56B6C2",
+    "#ABB2BF",
+]
+brights = [
+    "#5C6370",
+    "#E06C75",
+    "#98C379",
+    "#D19A66",
+    "#61AFEF",
+    "#C678DD",
+    "#56B6C2",
+    "#FFFEFE",
+]
+background = "#1E2127"
+foreground = "#ABB2BF"
+selection_bg = "#FFFFFF"
+selection_fg = "#1E2127"
+cursor_bg = "#FFFFFF"
+cursor_fg = "#1E2127"
+cursor_border = "#ABB2BF"
