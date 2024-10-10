@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="spaceship"
+# ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -38,7 +38,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
+# DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -66,8 +66,8 @@ DISABLE_AUTO_TITLE="true"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 export ZOXIDE_CMD_OVERRIDE="cd"
 
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTONAME_SESSION=true
+# ZSH_TMUX_AUTOSTART=true
+# ZSH_TMUX_AUTONAME_SESSION=true
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -89,7 +89,6 @@ plugins=(
   npm 
   node 
   rust
-  tmux
   spaceship-gradle
 )
 
@@ -144,4 +143,6 @@ export NODE_PATH=$(npm root --quiet -g)
 export GPG_TTY=$(tty)
 
 alias bat="batcat"
+
+eval "$(starship init zsh)"
 

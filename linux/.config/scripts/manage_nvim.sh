@@ -7,17 +7,17 @@ version_gt() {
 
 # Get the current installed version of Neovim
 if command -v nvim &> /dev/null; then
-    current_version=$(nvim --version | head -n 1 | awk '{print $2}')
+    current_nvim_version=$(nvim --version | head -n 1 | awk '{print $2}')
 else
-    current_version="0.0.0"
+    current_nvim_version="0.0.0"
 fi
 
 # Get the latest version from GitHub releases
-latest_version=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+latest_nvim_version=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 
 # Compare versions and update if necessary
-if version_gt "$latest_version" "$current_version"; then
-    echo "Updating Neovim from version $current_version to $latest_version..."
+if version_gt "$latest_nvim_version" "$current_nvim_version"; then
+    echo "Updating Neovim from version $current_nvim_version to $latest_nvim_version..."
 
     # Download the latest Neovim release
     wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz -O /tmp/nvim-linux64.tar.gz
@@ -38,7 +38,28 @@ if version_gt "$latest_version" "$current_version"; then
     # Clean up
     rm /tmp/nvim-linux64.tar.gz
 
-    echo "Neovim updated successfully to version $latest_version."
+    echo "Neovim updated successfully to version $latest_nvim_version."
 else
-    echo "Neovim is already up-to-date (version $current_version)."
+    echo "Neovim is already up-to-date (version $current_nvim_version)."
+fi
+
+if command -v starship &> /dev/null; then
+  current_starship_version=$(starship -V | awk '{print $2}')
+else
+  current_starship_version="0.0.0"
+fi
+
+latest_starship_version=$(curl -s https://api.github.com/repos/starship/starship/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+
+# trim the "v" from the version number
+latest_starship_version="${latest_starship_version//v}"
+
+if version_gt "$latest_starship_version" "$current_starship_version"; then
+    echo "Updating Starship from version $current_starship_version to $latest_starship_version..."
+    # Download the latest Starship release
+    curl -sS https://starship.rs/install.sh | sh
+    
+    echo "Starship updated successfully to version $latest_starship_version."
+else
+  echo "Starship is already up-to-date (version $current_starship_version)."
 fi

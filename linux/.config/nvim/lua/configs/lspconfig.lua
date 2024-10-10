@@ -71,6 +71,7 @@ local servers = {
 		},
 	},
 	yamlls = {},
+	taplo = {},
 }
 
 -- lsps with default config
