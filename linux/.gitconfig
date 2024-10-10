@@ -4,3 +4,5 @@
 	signingkey = 34960ACEF7538706
 [commit]
 	gpgsign = true
+[log]
+	showSignature = true

@@ -70,7 +70,19 @@ local servers = {
 			'htmlangular',
 		},
 	},
-	yamlls = {},
+	yamlls = {
+		settings = {
+			yaml = {
+				schemas = {
+					['https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json'] = {
+						'.lazygit.yml',
+						'/.git/lazygit.yml',
+					},
+					['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
+				},
+			},
+		},
+	},
 	taplo = {},
 }
 
