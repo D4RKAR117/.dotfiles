@@ -33,9 +33,11 @@
             "keys": "alt+shift+d"
         }
     ],
+    "centerOnLaunch": true,
     "copyFormatting": "none",
     "copyOnSelect": true,
     "defaultProfile": "{51855cb2-8cce-5362-8f54-464b92b32386}",
+    "launchMode": "maximized",
     "newTabMenu": 
     [
         {
@@ -53,7 +55,8 @@
                 "size": 12,
                 "weight": "semi-bold"
             },
-            "opacity": 55,
+            "intenseTextStyle": "all",
+            "opacity": 40,
             "useAcrylic": true
         },
         "list": 
@@ -133,5 +136,5 @@
         }
     ],
     "themes": [],
-    "useAcrylicInTabRow": false
+    "useAcrylicInTabRow": true
 }
