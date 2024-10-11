@@ -10,7 +10,7 @@ return {
 		typescriptreact = { 'eslint_d', 'cspell' },
 		javascriptreact = { 'eslint_d', 'cspell' },
 		bash = { 'shellcheck', 'cspell' },
-		zsh = { 'shellcheck', 'zsh', 'cspell' },
+		zsh = { 'zsh', 'cspell' },
 		css = { 'stylelint', 'cspell' },
 		scss = { 'stylelint', 'cspell' },
 		markdown = { 'markdownlint', 'cspell' },

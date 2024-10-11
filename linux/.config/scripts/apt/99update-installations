@@ -1,0 +1,1 @@
+APT::Update::Post-Invoke-Success { "if [ -x /usr/local/bin/manage_installations.sh ]; then /usr/local/bin/manage_installations.sh; fi"; };

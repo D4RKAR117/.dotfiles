@@ -1,0 +1,4 @@
+# Set the theme
+--theme="TwoDark"
+# Style modifications
+--style="numbers,changes,header,grid"

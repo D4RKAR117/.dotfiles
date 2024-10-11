@@ -43,28 +43,6 @@ else
     echo "Neovim is already up-to-date (version $current_nvim_version)."
 fi
 
-if command -v starship &> /dev/null; then
-  current_starship_version=$(starship -V | awk '{print $2}')
-else
-  current_starship_version="0.0.0"
-fi
-
-latest_starship_version=$(curl -s https://api.github.com/repos/starship/starship/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-
-# trim the "v" from the version number
-latest_starship_version="${latest_starship_version//v}"
-
-if version_gt "$latest_starship_version" "$current_starship_version"; then
-    echo "Updating Starship from version $current_starship_version to $latest_starship_version..."
-    # Download the latest Starship release
-    curl -sS https://starship.rs/install.sh | sh
-    
-    echo "Starship updated successfully to version $latest_starship_version."
-else
-  echo "Starship is already up-to-date (version $current_starship_version)."
-fi
-
-
 if command -v lazygit &> /dev/null; then
   # Get the current installed version of Lazygit looking for first "version=0.0.0" on the output
   # the output string ignoring "git version=0.0.0" due to beign present afterwards
@@ -93,4 +71,28 @@ if version_gt "$latest_lazygit_version" "$current_lazygit_version"; then
 
 else
   echo "Lazygit is already up-to-date (version $current_lazygit_version)."
+fi
+
+if command -v eza &> /dev/null; then
+  # Get the current installed version of Eza looking for first "v0.0.0" on the output
+  current_eza_version=$(eza -v | grep -oP 'v\K[^ ]+' | head -n 1)
+else
+  current_eza_version="0.0.0"
+fi
+
+latest_eza_version=$(curl -s https://api.github.com/repos/eza-community/eza/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
+
+if version_gt "$latest_eza_version" "$current_eza_version"; then
+    echo "Updating Eza from version $current_eza_version to $latest_eza_version..."
+    # Download the latest Eza release
+    wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -O - | tar xz 
+
+    # Remove the old Eza directory
+    sudo rm -rf /usr/local/bin/eza
+
+    sudo install eza /usr/local/bin
+
+    rm -rf eza_x86_64-unknown-linux-gnu.tar.gz eza
+else
+  echo "Eza is already up-to-date (version $current_eza_version)."
 fi
