@@ -82,7 +82,7 @@ zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
 
 # Keybindings
-bindkey -e
+bindkey '^f' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
@@ -110,9 +110,11 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:*:options' fzf-preview 
 zstyle ':fzf-tab:complete:*:argument-1' fzf-preview
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -D --icons=auto --color=always $realpath'
-zstyle ':fzf-tab:complete:eza:*' fzf-preview 'eza -D --icons=auto --color=always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -DA --icons=auto --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -DA --icons=auto --color=always $realpath'
+zstyle ':fzf-tab:complete:eza:*' fzf-preview 'eza -DA --icons=auto --color=always $realpath'
 zstyle ':fzf-tab:complete:cat:*' fzf-preview 'if [ -d $realpath ]; then eza -D --icons=auto --color=always $realpath; else batcat --color=always --style=numbers --line-range=:500 $realpath; fi'
+zstyle ':fzf-tab:complete:bat:*' fzf-preview 'if [ -d $realpath ]; then eza -D --icons=auto --color=always $realpath; else batcat --color=always --style=numbers --line-range=:500 $realpath; fi'
 zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'

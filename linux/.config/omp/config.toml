@@ -61,6 +61,16 @@ branch_behind_icon = "⇣ "
 branch_gone_icon = "󱓊 "
 github_icon = " "
 
+[[blocks.segments]]
+type = "executiontime"
+style = "plain"
+foreground = "p:terminal-blue"
+template = "  {{ .FormattedMs }} "
+
+[blocks.segments.properties]
+threshold = 500
+style = "austin"
+
 
 [[blocks.segments]]
 type = "status"
