@@ -8,6 +8,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Source/Load Zinit
 source "${ZINIT_HOME}/zinit.zsh"
+source "$HOME/.zinit.utils.zsh"
 
 
 # Exports and path augmentations
@@ -20,7 +21,6 @@ export DISPLAY=:0
 export NODE_PATH=$(npm root --quiet -g)
 export GPG_TTY=$(tty)
 export EZA_CONFIG_DIR="$HOME/.config/eza"
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 
 ## PNPM
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -32,6 +32,8 @@ esac
 # Plugin Flags
 ZOXIDE_CMD_OVERRIDE="cd"
 zstyle ':omz:plugins:eza' 'icons' yes
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTONAME_SESSION=true
 
 # Prompt configuration
 eval "$(oh-my-posh init zsh --config $HOME/.config/omp/config.toml)"
@@ -62,12 +64,16 @@ zinit snippet OMZP::history
 zinit snippet OMZP::zoxide
 zinit snippet OMZP::fzf
 zinit snippet OMZP::volta
+zinit snippet OMZP::rust
+zinit ice as"completion"
+zinit snippet OMZP::rust/_rustc
 zinit snippet OMZP::npm
 zinit snippet OMZP::node
-zinit snippet OMZP::rust
 zinit snippet OMZP::eza
 zinit ice as"completion"
 zinit snippet https://github.com/eza-community/eza/blob/main/completions/zsh/_eza
+zinit ice atpull"%atclone" atclone"_fix-omz-plugin"
+zinit snippet OMZP::tmux
 
 
 # Install completions from Plugins
