@@ -1,4 +1,3 @@
-
 # Set the directory to store zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -10,35 +9,15 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 source "$HOME/.zinit.utils.zsh"
 
-
-# Exports and path augmentations
-export VOLTA_HOME="$HOME/.volta"
-export PATH=$HOME/bin:$VOLTA_HOME:$HOME/.local/bin:/usr/local/bin:$PATH
-export SUDO_EDITOR="nvim"
-export EDITOR="nvim"
-export BROWSER="wslview"
-export DISPLAY=:0
-export NODE_PATH=$(npm root --quiet -g)
-export GPG_TTY=$(tty)
-export EZA_CONFIG_DIR="$HOME/.config/eza"
-
-## PNPM
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
 # Plugin Flags
 ZOXIDE_CMD_OVERRIDE="cd"
 zstyle ':omz:plugins:eza' 'icons' yes
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTONAME_SESSION=true
+setopt globdots
 
 # Prompt configuration
 eval "$(oh-my-posh init zsh --config $HOME/.config/omp/config.toml)"
-
-# Compile completions
 
 # Plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -50,8 +29,6 @@ zinit snippet OMZL::misc.zsh
 zinit snippet OMZL::directories.zsh
 zinit snippet OMZL::clipboard.zsh
 zinit snippet OMZL::termsupport.zsh
-zinit snippet OMZL::completion.zsh
-zinit snippet OMZL::compfix.zsh
 zinit snippet OMZL::grep.zsh
 
 # OMZ Snippets/Plugins
@@ -110,7 +87,11 @@ alias bat="batcat"
 
 
 # Zsh styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
+zstyle ':completion:*' filename-completion
+zstyle ':completion:*' keep-completion-history true 
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' menu no
@@ -118,9 +99,11 @@ zstyle ':fzf-tab:complete:*:options' fzf-preview
 zstyle ':fzf-tab:complete:*:argument-1' fzf-preview
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -DA --icons=auto --color=always $realpath'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -DA --icons=auto --color=always $realpath'
+zstyle ':fzf-tab:complete:cp:*' fzf-preview 'if [ -d $realpath ]; then eza -DA --icons=auto --color=always $realpath; else batcat --color=always --style=numbers --line-range=:500 $realpath; fi'
+zstyle ':fzf-tab:complete:mv:*' fzf-preview 'if [ -d $realpath ]; then eza -DA --icons=auto --color=always $realpath; else batcat --color=always --style=numbers --line-range=:500 $realpath; fi'
 zstyle ':fzf-tab:complete:eza:*' fzf-preview 'eza -DA --icons=auto --color=always $realpath'
-zstyle ':fzf-tab:complete:cat:*' fzf-preview 'if [ -d $realpath ]; then eza -D --icons=auto --color=always $realpath; else batcat --color=always --style=numbers --line-range=:500 $realpath; fi'
-zstyle ':fzf-tab:complete:bat:*' fzf-preview 'if [ -d $realpath ]; then eza -D --icons=auto --color=always $realpath; else batcat --color=always --style=numbers --line-range=:500 $realpath; fi'
+zstyle ':fzf-tab:complete:cat:*' fzf-preview 'if [ -d $realpath ]; then eza -DA --icons=auto --color=always $realpath; else batcat --color=always --style=numbers --line-range=:500 $realpath; fi'
+zstyle ':fzf-tab:complete:bat:*' fzf-preview 'if [ -d $realpath ]; then eza -DA --icons=auto --color=always $realpath; else batcat --color=always --style=numbers --line-range=:500 $realpath; fi'
 zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
@@ -128,4 +111,3 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 
 
 # Shell integrations
-
