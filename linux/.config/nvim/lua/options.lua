@@ -47,9 +47,6 @@ vim.opt.updatetime = 200
 
 vim.ui.select = require('dropbar.utils.menu').select
 
--- Telescope plugins
-require('telescope').load_extension 'noice'
-
 -- Copilot chat integracions
 api.nvim_create_autocmd({ 'LspAttach' }, {
 	callback = function()
