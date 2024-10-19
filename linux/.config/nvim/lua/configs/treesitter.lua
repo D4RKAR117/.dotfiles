@@ -14,6 +14,7 @@ local config = {
 		'yaml',
 		'rust',
 		'toml',
+		'tmux',
 		'json',
 		'javascript',
 		'typescript',

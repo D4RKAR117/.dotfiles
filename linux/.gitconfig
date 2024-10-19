@@ -6,3 +6,5 @@
 	gpgsign = true
 [log]
 	showSignature = true
+[init]
+	defaultBranch = main

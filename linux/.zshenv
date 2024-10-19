@@ -2,7 +2,7 @@
 
 # Exports and path augmentations
 export VOLTA_HOME="$HOME/.volta"
-export PATH=$HOME/bin:$VOLTA_HOME/bin:$HOME/.cargo/env:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$VOLTA_HOME/bin:$HOME/.cargo/env:$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export SUDO_EDITOR="nvim"
 export EDITOR="nvim"
 export BROWSER="wslview"
