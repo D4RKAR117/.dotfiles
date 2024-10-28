@@ -3,6 +3,7 @@ console_title_template = " {{ .Folder }} :: {{if .Root}}Admin{{end}}"
 final_space = true
 version = 2
 terminal_background = "p:t-background"
+auto_upgrade = true
 
 [palette]
 main-bg = "transparent"
