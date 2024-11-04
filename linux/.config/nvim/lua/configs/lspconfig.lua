@@ -1,8 +1,8 @@
--- load defaults i.e lua_lsp
-require('nvchad.configs.lspconfig').defaults()
-
 local lspconfig = require 'lspconfig'
-local nvconfigs = require 'nvchad.configs.lspconfig'
+local nvlsp = require 'nvchad.configs.lspconfig'
+
+dofile(vim.g.base46_cache .. 'lsp')
+require('nvchad.lsp').diagnostic_config()
 
 local mason_registry = require 'mason-registry'
 local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path()
@@ -12,6 +12,26 @@ local css_capabilities = vim.lsp.protocol.make_client_capabilities()
 css_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local servers = {
+	lua_ls = {
+		settings = {
+			Lua = {
+				diagnostics = {
+					globals = { 'vim' },
+				},
+				workspace = {
+					library = {
+						vim.fn.expand '$VIMRUNTIME/lua',
+						vim.fn.expand '$VIMRUNTIME/lua/vim/lsp',
+						vim.fn.stdpath 'data' .. '/lazy/ui/nvchad_types',
+						vim.fn.stdpath 'data' .. '/lazy/lazy.nvim/lua/lazy',
+						'${3rd}/luv/library',
+					},
+					maxPreload = 100000,
+					preloadFileSize = 10000,
+				},
+			},
+		},
+	},
 	html = {
 		filetypes = { 'html', 'vue', 'javascriptreact', 'typescriptreact' },
 	},
@@ -87,33 +107,24 @@ local servers = {
 }
 
 -- lsps with default config
-for name, opts in pairs(servers) do
-	opts.on_init = nvconfigs.on_init
-	opts.on_attach = function(client, bufnr)
-		nvconfigs.on_attach(client, bufnr)
 
-		if client.name == 'eslint' then
-			client.server_capabilities.documentFormattingProvider = true
-		elseif client.name == 'tsserver' or client.name == 'ts_ls' then
-			client.server_capabilities.documentFormattingProvider = false
-		end
+local attach = function(client, bufnr)
+	nvlsp.on_attach(client, bufnr)
+	vim.keymap.set({ 'n', 'v' }, '<leader>ca', function()
+		require('tiny-code-action').code_action()
+	end, { desc = 'LSP Code action (Tiny)', buffer = bufnr, silent = true })
 
-		vim.keymap.set({ 'n', 'v' }, '<leader>ca', function()
-			require('tiny-code-action').code_action()
-		end, { desc = 'LSP Code action advanced', buffer = bufnr })
-
-		--#region Mappings that must execute on lsp attaching
-		--#endregion
+	if client.name == 'eslint' then
+		client.server_capabilities.documentFormattingProvider = true
+	elseif client.name == 'tsserver' or client.name == 'ts_ls' then
+		client.server_capabilities.documentFormattingProvider = false
 	end
+end
 
-	opts.capabilities = nvconfigs.capabilities
+for name, opts in pairs(servers) do
+	opts.on_init = nvlsp.on_init
+	opts.on_attach = attach
+	opts.capabilities = nvlsp.capabilities
 
 	lspconfig[name].setup(opts)
 end
-
--- configuring single server, example: typescript
--- lspconfig.ts_ls.setup {
---   on_attach = nvlsp.on_attach
---   on_init = nvlsp.on_init,
---   capabilities = nvlsp.capabilities,
--- }

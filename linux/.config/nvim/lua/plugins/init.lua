@@ -18,11 +18,6 @@ return {
 		'nvim-treesitter/nvim-treesitter',
 		opts = require('configs.treesitter').opts,
 		config = require('configs.treesitter').config,
-		dependencies = {
-			{
-				'nvim-treesitter/nvim-treesitter-refactor',
-			},
-		},
 	},
 	{
 		'mfussenegger/nvim-lint',
@@ -94,16 +89,6 @@ return {
 		config = function(_, opts)
 			require('tiny-code-action').setup(opts)
 		end,
-		keys = {
-			{
-				'<leader>ca',
-				function()
-					require('tiny-code-action').code_action()
-				end,
-				mode = { 'n', 'v' },
-				desc = 'LSP Code action advanced',
-			},
-		},
 	},
 
 	{
@@ -274,17 +259,17 @@ return {
 			{
 				'<leader>xx',
 				'<cmd>Trouble diagnostics toggle<cr>',
-				desc = 'Diagnostics (Trouble)',
+				desc = 'LSP Diagnostics (Trouble)',
 			},
 			{
 				'<leader>xX',
 				'<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-				desc = 'Buffer Diagnostics (Trouble)',
+				desc = 'LSP Buffer Diagnostics (Trouble)',
 			},
 			{
 				'<leader>cs',
 				'<cmd>Trouble symbols toggle focus=false<cr>',
-				desc = 'Symbols (Trouble)',
+				desc = 'LSP Symbols (Trouble)',
 			},
 			{
 				'<leader>cl',
@@ -294,12 +279,12 @@ return {
 			{
 				'<leader>xL',
 				'<cmd>Trouble loclist toggle<cr>',
-				desc = 'Location List (Trouble)',
+				desc = 'LSP Location List (Trouble)',
 			},
 			{
 				'<leader>xQ',
 				'<cmd>Trouble qflist toggle<cr>',
-				desc = 'Quickfix List (Trouble)',
+				desc = 'LSP Quickfix List (Trouble)',
 			},
 		},
 	},

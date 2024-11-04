@@ -19,7 +19,6 @@ M.base46 = {
 		'nvcheatsheet',
 		'semantic_tokens',
 		'nvimtree',
-		'nvdash',
 		'devicons',
 		'nvcheatsheet',
 		'bufferline',
