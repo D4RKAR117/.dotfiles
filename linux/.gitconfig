@@ -1,10 +1,20 @@
-[user]
-	name = D4RKAR117
-	email = D4RKAR117@outlook.es
-	signingkey = 34960ACEF7538706
-[commit]
-	gpgsign = true
 [log]
 	showSignature = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
+
+[commit]
+  gpgsign = true
+
+
+[user]
+  useConfigOnly = true
+
+[include]
+  path = ~/.gitconfig.default
+
+[includeIf "gitdir:~/Development/Personal/"]
+  path = ~/.gitconfig.default
+
+[includeIf "gitdir:~/Development/Work/"]
+  path = ~/.gitconfig.work

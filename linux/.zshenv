@@ -11,6 +11,8 @@ export NODE_PATH=$(npm root --quiet -g)
 export GPG_TTY=$(tty)
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 
+source "$HOME/.private.sh"
+
 ## PNPM
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in

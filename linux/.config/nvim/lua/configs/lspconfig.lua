@@ -49,6 +49,7 @@ local servers = {
 	volar = {
 		filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 	},
+	tailwindcss = {},
 	ts_ls = {
 		init_options = {
 			plugins = {

@@ -1,0 +1,8 @@
+[user]
+	name = cjaramillo-palace
+	email = cjaramillo@github.palaceresorts.com
+	signingkey = D88089207401E450
+
+[url "git@github.com-work-palace"]
+  insteadOf = git@github.com
+
