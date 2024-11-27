@@ -231,7 +231,8 @@ return {
 		},
 		build = 'make tiktoken', -- Only on MacOS or Linux
 		opts = {
-			debug = true, -- Enable debugging
+			debug = false, -- Enable debuggin mode
+			chat_autocomplete = true,
 			mappings = {
 				complete = {
 					insert = '',

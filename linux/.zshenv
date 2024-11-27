@@ -10,6 +10,7 @@ export DISPLAY=:0
 export NODE_PATH=$(npm root --quiet -g)
 export GPG_TTY=$(tty)
 export EZA_CONFIG_DIR="$HOME/.config/eza"
+export CAPACITOR_ANDROID_STUDIO_PATH=$(which studio64.exe)
 
 source "$HOME/.private.sh"
 

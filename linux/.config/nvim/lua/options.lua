@@ -46,10 +46,3 @@ api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
 vim.opt.updatetime = 200
 
 vim.ui.select = require('dropbar.utils.menu').select
-
--- Copilot chat integracions
-api.nvim_create_autocmd({ 'LspAttach' }, {
-	callback = function()
-		require('CopilotChat.integrations.cmp').setup()
-	end,
-})
