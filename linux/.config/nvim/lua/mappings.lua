@@ -8,10 +8,12 @@ map('n', ';', ':', { desc = 'CMD enter command mode' })
 map('i', 'jk', '<ESC>')
 
 -- Code Line move
-map('n', '<A-Up>', ':m .-2<CR>==', { desc = 'Move line up' }) -- move line up(n)
-map('n', '<A-Down>', ':m .+1<CR>==', { desc = 'Move line down' }) -- move line down(n)
-map('v', '<A-Up>', ":m '>-2<CR>gv=gv", { desc = 'Move line selection up' }) -- move line up(v)
-map('v', '<A-Down>', ":m '<+2<CR>gv=gv", { desc = 'Move line selection down' }) -- move line down(v)
+map('v', '<A-Down>', ":m '>+1<CR>gv=gv", { desc = 'Move line selection down' })
+map('v', '<A-Up>', ":m '<-2<CR>gv=gv", { desc = 'Move line selection up' })
+map('n', '<A-Down>', ':m .+1<CR>==', { desc = 'Move line down' })
+map('n', '<A-Up>', ':m .-2<CR>==', { desc = 'Move line up' })
+map('i', '<A-Down>', ':m .+1<CR>==gi', { desc = 'Move line down' })
+map('i', '<A-Up>', ':m .-2<CR>==gi', { desc = 'Move line up' })
 
 -- Noice
 map('c', '<S-Enter>', function()
@@ -39,16 +41,14 @@ end, { desc = 'Copilot Chat - Quick Chat' })
 
 -- Nvchad volt framework
 --- Keyboard users
-vim.keymap.set('n', '<C-t>', function()
+map('n', '<C-t>', function()
 	require('menu').open 'default'
 end, {})
 
 -- mouse users + nvimtree users!
-vim.keymap.set('n', '<RightMouse>', function()
+map('n', '<RightMouse>', function()
 	vim.cmd.exec '"normal! \\<RightMouse>"'
 
 	local options = vim.bo.ft == 'NvimTree' and 'nvimtree' or 'default'
 	require('menu').open(options, { mouse = true })
 end, {})
-
--- -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")

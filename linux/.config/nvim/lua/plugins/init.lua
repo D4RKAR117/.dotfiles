@@ -21,6 +21,7 @@ return {
 	},
 	{
 		'mfussenegger/nvim-lint',
+		event = { 'BufReadPre', 'BufNewFile' },
 		config = function(_, _)
 			local configs = require 'configs.nvlint'
 			require('lint').linters_by_ft =
@@ -123,9 +124,12 @@ return {
 		},
 		dependencies = {
 			'MunifTanjim/nui.nvim',
-			{ 'rcarriga/nvim-notify', opts = {
-				background_colour = '#282c34',
-			} },
+			{
+				'rcarriga/nvim-notify',
+				opts = {
+					background_colour = '#282c34',
+				},
+			},
 		},
 	},
 	{

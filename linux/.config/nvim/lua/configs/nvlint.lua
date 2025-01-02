@@ -1,14 +1,14 @@
 return {
 	---@type table<string, string[]>
 	linters_by_ft = {
-		json = { 'jsonlint', 'eslint_d', 'cspell' },
-		vue = { 'eslint_d', 'cspell' },
+		json = { 'jsonlint', 'eslint', 'cspell' },
+		vue = { 'eslint', 'cspell' },
 		lua = { 'luac', 'cspell' },
 		rust = { 'clippy', 'cspell' },
-		javascript = { 'eslint_d', 'cspell' },
-		typescript = { 'eslint_d', 'cspell' },
-		typescriptreact = { 'eslint_d', 'cspell' },
-		javascriptreact = { 'eslint_d', 'cspell' },
+		javascript = { 'eslint', 'cspell' },
+		typescript = { 'eslint', 'cspell' },
+		typescriptreact = { 'eslint', 'cspell' },
+		javascriptreact = { 'eslint', 'cspell' },
 		bash = { 'shellcheck', 'cspell' },
 		zsh = { 'zsh', 'cspell' },
 		css = { 'stylelint', 'cspell' },

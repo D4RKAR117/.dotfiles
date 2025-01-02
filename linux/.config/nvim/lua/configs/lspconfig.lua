@@ -105,6 +105,9 @@ local servers = {
 		},
 	},
 	taplo = {},
+	graphql = {
+		filetypes = { 'graphql', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+	},
 }
 
 -- lsps with default config
