@@ -96,3 +96,31 @@ if version_gt "$latest_eza_version" "$current_eza_version"; then
 else
   echo "Eza is already up-to-date (version $current_eza_version)."
 fi
+
+latest_podman_remote_version=$(curl -s https://api.github.com/repos/containers/podman/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
+
+if command -v podman &> /dev/null; then
+  # Get the current installed version of Podman remote for first 0.0.0 after "version" on the output
+  current_podman_version=$(podman-remote --version | grep -oP 'version \K[^ ]+' | head -n 1)
+else
+  current_podman_version="0.0.0"
+fi
+
+if version_gt "$latest_podman_remote_version" "$current_podman_version"; then
+    echo "Updating Podman remote from version $current_podman_version to $latest_podman_remote_version ..."
+    # Download the latest Podman remote release
+    wget https://github.com/containers/podman/releases/latest/download/podman-remote-static-linux_amd64.tar.gz
+    tar xzf podman-remote-static-linux_amd64.tar.gz 
+
+    #rename bin from podman-remote-static-linux_amd64 to podman-remote
+    mv bin/podman-remote-static-linux_amd64 bin/podman-remote
+
+    #remove old podman-remote bin from /usr/local/bin
+    sudo rm -rf /usr/local/bin/podman-remote
+
+    sudo install bin/podman-remote /usr/local/bin
+    
+    rm -rf podman-remote-static-linux_amd64.tar.gz bin
+else
+  echo "Podman remote is already up-to-date (version $current_podman_version)."
+fi
