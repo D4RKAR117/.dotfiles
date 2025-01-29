@@ -99,7 +99,7 @@ fi
 
 latest_podman_remote_version=$(curl -s https://api.github.com/repos/containers/podman/releases/latest | grep -Po '"tag_name": "v\K[^"]*')
 
-if command -v podman &> /dev/null; then
+if command -v podman-remote &> /dev/null; then
   # Get the current installed version of Podman remote for first 0.0.0 after "version" on the output
   current_podman_version=$(podman-remote --version | grep -oP 'version \K[^ ]+' | head -n 1)
 else

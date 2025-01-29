@@ -2,8 +2,8 @@
 
 # Exports and path augmentations
 export VOLTA_HOME="$HOME/.volta"
-export VSCODE_HOME=$(find $HOME/.vscode-server -type f -name "code" -exec dirname {} \; | head -n 1)
-export PATH=$HOME/bin:$VOLTA_HOME/bin:$HOME/.cargo/env:$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:$VSCODE_HOME:$PATH
+#export VSCODE_HOME=$(find $HOME/.vscode-server -type f -name "code" -exec dirname {} \; | head -n 1)
+export PATH=$HOME/bin:$VOLTA_HOME/bin:$HOME/.cargo/env:$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export SUDO_EDITOR="nvim"
 export EDITOR="nvim"
 export BROWSER="wslview"
